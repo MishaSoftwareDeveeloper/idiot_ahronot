@@ -1,0 +1,55 @@
+<div class="albums-content">
+    <p-dialog header="Add new album" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+              [draggable]="false" [resizable]="false" (onHide)="onHideModal()">
+        <div class="modal-album">
+            <p-card class="card p-card-shadow" *ngFor="let album of localAlbums; let i = index" header="" subheader="" [style]="{width: '360px'}">
+                <p-header>
+                    <img alt="Album" src="{{album.image_path}}">
+                </p-header>
+                <div class="card-content">
+                    {{album.artist_name}}
+                    <i class="pi pi-caret-right play-icon"></i>
+                </div>
+                <ng-template pTemplate="footer">
+                    <button type="button" pButton pRipple class="p-button-secondary p-button-warn" label="Add Album" (click)="onAddAlbum(album)"></button>
+                </ng-template>
+            </p-card>
+
+        </div>
+
+    </p-dialog>
+    <div class="p-inputgroup">
+        <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-secondary" (click)="displayModal = true"></button>
+        <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchData" class="search-input" (input)="dview.filter($event.target.value)">
+        <button type="button" pButton pRipple icon="pi pi-search" styleClass="p-button-warn"></button>
+        <button type="button" pButton pRipple  class="p-button-secondary p-button-warn" label="Logout" (click)="onLogout()"></button>
+    </div>
+
+    <p-tabView>
+        <p-tabPanel [header]="tab.title" *ngFor="let tab of tabs; let i = index" [selected]="i == 0">
+            <div class="grid">
+                <p-dataView *ngIf="showDataView"  #dv [value]="albums" layout="grid" [paginator]="true" [rows]="8" filterBy="artist_name">
+                    <ng-template let-album pTemplate="gridItem">
+                        <div class="p-col-12 p-md-4">
+                           
+                            <div class="album-item">
+                                <button pButton pRipple type="button" icon="pi pi-times" styleClass="p-button-sm" class="p-button-rounded p-button-danger delete-btn" (click)="onDelete(album.id)"></button>
+                                <img [src]="album.image_path" [alt]="album.title" class="album-image" />
+                                <div class="album-details">
+                                    <div class="artist-name">{{album.artist_name}}</div>
+                                    <div class="bottom-section">
+                                        <div class="album-title">{{album.title}}</div>
+                                        <i class="pi pi-caret-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+     
+                </p-dataView>
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+
+
+</div>

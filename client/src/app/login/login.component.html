@@ -1,0 +1,14 @@
+<div class="bagroundLogin">
+    <div class="p-field">
+        <label for="mail">Email</label>
+        <input id="mail" type="email" pInputText [(ngModel)]="user.mail" />
+    </div>
+    <div class="p-field">
+        <label for="password">Password</label>
+        <input id="password" type="password" pPassword [(ngModel)]="user.password" [feedback]="false"/>
+    </div>
+    <div class="p-field">
+        <button id="loginBtn" pButton type="button" icon="pi pi-check" label="Login" (click)="onLogin()"></button>
+    </div>
+</div>
+<p-toast position="top-center" [baseZIndex]="5000" ></p-toast>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MusicManagmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Albums">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="artist_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="genres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="MusicManagmentModel.AlbumsUsers" FromRole="Albums" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Albums" Relationship="MusicManagmentModel.AlbumsUsers" FromRole="Users" ToRole="Albums" />
+  </EntityType>
+  <EntityContainer Name="MusicManagmentEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Albums" EntityType="Self.Albums" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="AlbumsUsers" Association="MusicManagmentModel.AlbumsUsers">
+      <End Role="Albums" EntitySet="Albums" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="AlbumsUsers">
+    <End Type="MusicManagmentModel.Albums" Role="Albums" Multiplicity="*" />
+    <End Type="MusicManagmentModel.Users" Role="Users" Multiplicity="*" />
+  </Association>
+</Schema>

@@ -1,0 +1,62 @@
+.albums-content{
+    .logout-btn{
+        border-left: 2px white solid;
+    }
+    .search-input{
+        margin-left: 10px;
+    }
+    .modal-album{
+        .card{
+           
+            img{
+                max-height: 200px;
+            }
+            .card-content{
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                .play-icon:hover{
+                    
+                    cursor:pointer;
+                }
+            }
+        }
+       
+    }
+
+    .album-item{
+        width:100%;
+        height:auto;
+        max-height:400px;
+        max-width:320px;
+        padding: 20px 35px;
+        box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+        border-radius: 4px;
+        .delete-btn{
+            float: right;
+            height: 30px;
+            width: 30px;
+            margin-bottom: 5px;
+        }
+ 
+        .album-image{
+            height:200px;
+            width:250px;
+        }
+        .album-details{
+            .bottom-section{
+                display:flex;
+                justify-content:space-between;
+                i{
+                    color:black;
+                    &:hover{
+                        cursor:pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+ :host ::ng-deep .p-card{
+      margin: 10px auto;
+}

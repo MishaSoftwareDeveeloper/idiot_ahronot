@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MusicManagmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Albums">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="image_path" Type="nvarchar" MaxLength="200" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" />
+    <Property Name="artist_name" Type="nvarchar" MaxLength="100" />
+    <Property Name="genres" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AlbumsUsers">
+    <Key>
+      <PropertyRef Name="userId" />
+      <PropertyRef Name="albumId" />
+    </Key>
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="albumId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" />
+    <Property Name="password" Type="nvarchar" MaxLength="200" />
+    <Property Name="mail" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_Albums">
+    <End Role="Albums" Type="Self.Albums" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AlbumsUsers" Type="Self.AlbumsUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Albums">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AlbumsUsers">
+        <PropertyRef Name="albumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AlbumsUsers" Type="Self.AlbumsUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AlbumsUsers">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MusicManagmentModelStoreContainer">
+    <EntitySet Name="Albums" EntityType="Self.Albums" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AlbumsUsers" EntityType="Self.AlbumsUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Albums" Association="Self.FK_Albums">
+      <End Role="Albums" EntitySet="Albums" />
+      <End Role="AlbumsUsers" EntitySet="AlbumsUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users" Association="Self.FK_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="AlbumsUsers" EntitySet="AlbumsUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

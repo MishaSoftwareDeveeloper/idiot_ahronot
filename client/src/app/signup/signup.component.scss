@@ -1,0 +1,32 @@
+.signup-content{
+   
+      background: url('../../assets/images/Home/simon.jpg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+      -moz-background-size: 100% 100%;
+      -o-background-size: 100% 100%;
+      position: fixed;
+
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    .p-field{
+        display: flex;
+        flex-flow: row wrap;
+        max-width: 200px;
+        align-items: center;
+        margin: 20px auto auto;
+        label{
+            margin: 5px 0 10px 0;
+            color:white;
+            font-size:20px;
+            font-weight:700;
+        }
+    }
+    
+}
+:host ::ng-deep .p-toast {
+    width: 20rem;
+}

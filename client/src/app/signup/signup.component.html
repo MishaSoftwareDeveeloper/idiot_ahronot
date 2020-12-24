@@ -1,0 +1,23 @@
+<div class="signup-content">
+    
+    <div class="p-field">
+        <label for="username">Username</label>
+        <input id="username" type="username" pInputText [(ngModel)]="user.name" />
+    </div>
+    <div class="p-field">
+        <label for="mail">Email</label>
+        <input id="mail" type="email" pInputText [(ngModel)]="user.mail" />
+    </div>
+    <div class="p-field">
+        <label for="password">Password</label>
+        <input id="password" type="password" pPassword  [(ngModel)]="user.password" />
+    </div>
+    <div class="p-field">
+        <label for="confpassword">Confirm Password</label>
+        <input id="confpassword" type="password" pPassword [(ngModel)]="user.confpassword" />
+    </div>
+    <div class="p-field">
+        <button pButton type="button" label="Sign Up" (click)="onSignUp()"></button>
+    </div>
+</div>
+<p-toast position="top-center" [baseZIndex]="5000"></p-toast>
